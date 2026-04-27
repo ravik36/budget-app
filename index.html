@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Simple monthly planning</p>
+        <h1>See where your money goes and what your savings can become.</h1>
+        <p class="hero-text">
+          Enter your monthly income and spending to get a savings rate, a balanced allocation,
+          and a 12-month projection with clean visual feedback.
+        </p>
+      </div>
+      <div class="hero-highlight">
+        <p class="highlight-label">Suggested goal</p>
+        <p class="highlight-value" id="headlineSavings">$0</p>
+        <p class="highlight-text">Monthly savings target based on your current budget.</p>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel form-panel">
+        <div class="panel-header">
+          <h2>Monthly Budget</h2>
+          <p>Adjust the values to update the plan instantly.</p>
+        </div>
+
+        <form id="budgetForm" class="budget-form">
+          <label>
+            <span>Monthly income</span>
+            <input id="income" name="income" type="number" min="0" step="50" value="5200">
+          </label>
+
+          <label>
+            <span>Fixed expenses</span>
+            <input id="fixedExpenses" name="fixedExpenses" type="number" min="0" step="50" value="1800">
+          </label>
+
+          <label>
+            <span>Variable expenses</span>
+            <input id="variableExpenses" name="variableExpenses" type="number" min="0" step="50" value="1100">
+          </label>
+        </form>
+
+        <div class="insight-strip" id="budgetStatus">
+          You are saving <strong>44%</strong> of your monthly income.
+        </div>
+      </section>
+
+      <section class="panel metrics-panel">
+        <div class="metric-grid">
+          <article class="metric-card">
+            <p class="metric-label">Savings Rate</p>
+            <p class="metric-value" id="savingsRate">0%</p>
+            <p class="metric-note">Portion of income left after expenses.</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-label">Left After Spending</p>
+            <p class="metric-value" id="leftoverAmount">$0</p>
+            <p class="metric-note">Available for savings, debt payoff, or investing.</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-label">Savings in 12 Months</p>
+            <p class="metric-value" id="projectionTotal">$0</p>
+            <p class="metric-note">Simple projection if this monthly pace continues.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel allocation-panel">
+        <div class="panel-header">
+          <h2>Suggested Allocation</h2>
+          <p>A practical split of the money you have left each month.</p>
+        </div>
+
+        <div class="allocation-grid">
+          <article class="allocation-card accent-save">
+            <p class="allocation-label">Emergency Savings</p>
+            <p class="allocation-value" id="allocationSavings">$0</p>
+            <p class="allocation-note">50% of leftover cash</p>
+          </article>
+
+          <article class="allocation-card accent-invest">
+            <p class="allocation-label">Future Goals</p>
+            <p class="allocation-value" id="allocationGoals">$0</p>
+            <p class="allocation-note">30% for travel, investing, or large purchases</p>
+          </article>
+
+          <article class="allocation-card accent-flex">
+            <p class="allocation-label">Flex Money</p>
+            <p class="allocation-value" id="allocationFlex">$0</p>
+            <p class="allocation-note">20% for fun, buffer, or irregular costs</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel charts-panel">
+        <div class="chart-card">
+          <div class="panel-header">
+            <h2>Budget Breakdown</h2>
+            <p>How income is split across monthly categories.</p>
+          </div>
+          <canvas id="breakdownChart" width="420" height="280" aria-label="Budget breakdown chart"></canvas>
+          <div class="legend" id="breakdownLegend"></div>
+        </div>
+
+        <div class="chart-card">
+          <div class="panel-header">
+            <h2>Savings Projection</h2>
+            <p>Estimated cumulative savings over the next 12 months.</p>
+          </div>
+          <canvas id="projectionChart" width="420" height="280" aria-label="Savings projection chart"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
